@@ -1,98 +1,146 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+export default function DashboardScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <View style={styles.container}>
+      
+      {/* HEADER */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>TechGears Store</Text>
+        <Text style={styles.subTitle}>Smart Tech Dashboard</Text>
+      </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      {/* GRID */}
+      <View style={styles.gridContainer}>
+        
+        <View style={styles.row}>
+          {/* SYSTEM */}
+          <View style={[styles.box, { backgroundColor: '#00bcd4' }]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/2099/2099058.png' }}
+              style={styles.icon}
+            />
+            <Text style={styles.statusOff}>OFF</Text>
+            <Text style={styles.boxText}>System</Text>
+          </View>
+
+          {/* DEVICE HEALTH */}
+          <View style={[styles.box, { backgroundColor: '#4caf50' }]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3524/3524659.png' }}
+              style={styles.icon}
+            />
+            <Text style={styles.boxText}>Device Health</Text>
+          </View>
+        </View>
+
+        <View style={styles.row}>
+          {/* ORDERS */}
+          <View style={[styles.box, { backgroundColor: '#ff7043' }]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3144/3144456.png' }}
+              style={styles.icon}
+            />
+            <Text style={styles.boxText}>Orders</Text>
+          </View>
+
+          {/* SETTINGS */}
+          <View style={[styles.box, { backgroundColor: '#7e57c2' }]}>
+            <Image
+              source={{ uri: 'https://cdn-icons-png.flaticon.com/128/2099/2099058.png' }}
+              style={styles.icon}
+            />
+            <Text style={styles.boxText}>Settings</Text>
+          </View>
+        </View>
+
+      </View>
+
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    backgroundColor: '#0f172a',
+  },
+
+  header: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    borderBottomWidth: 1,
+    borderColor: '#1e293b',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+
+  headerTitle: {
+    color: '#38bdf8',
+    fontSize: 26,
+    fontWeight: 'bold',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+
+  subTitle: {
+    color: '#94a3b8',
+    fontSize: 12,
+    marginTop: 4,
+  },
+
+  gridContainer: {
+    flex: 4,
+    padding: 20,
+    justifyContent: 'space-around',
+  },
+
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  box: {
+    width: '45%',
+    height: 160,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 8,
+  },
+
+  icon: {
+    width: 55,
+    height: 55,
+    marginBottom: 10,
+    tintColor: '#fff',
+  },
+
+  boxText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
+    textAlign: 'center',
+  },
+
+  statusOff: {
     position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: '#ff3b3b',
+    color: '#fff',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 5,
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+
+  footer: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+  },
+
+  footerText: {
+    color: '#38bdf8',
+    fontSize: 12,
   },
 });
