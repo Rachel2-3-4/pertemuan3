@@ -10,4 +10,4 @@ Project praktikum Minggu 3 - Flexbox Mastery.
 - Modern Dark UI Theme
 
 ## 🔗 Live Preview
-[Cek di Expo Snack]((https://snack.expo.dev/@rachel234/pertemuan3))
+(https://snack.expo.dev/@rachel234/pertemuan3)
